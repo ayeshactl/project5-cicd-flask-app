@@ -37,28 +37,28 @@ pipeline {
                 '''
             }
         }
-        
-       stage('Deploy Flask Container') {
-    steps {
-        echo 'Deploying Flask Application'
 
-        sh '''
-        docker stop project5-flask-container || true
-        docker rm project5-flask-container || true
+        stage('Deploy Flask Container') {
+            steps {
+                echo 'Deploying Flask Application'
 
-        docker run -d \
-        --name project5-flask-container \
-        -p 5000:5000 \
-        project5-flask-app
-        '''
-    }
-}
+                sh '''
+                docker stop project5-flask-container || true
+                docker rm project5-flask-container || true
 
+                docker run -d \
+                --name project5-flask-container \
+                -p 5000:5000 \
+                project5-flask-app
+                '''
+            }
+        }
     }
 
     post {
+
         success {
-            echo '✅ CI Pipeline Completed Successfully'
+            echo '✅ CI/CD Pipeline Completed Successfully'
         }
 
         failure {
