@@ -38,6 +38,33 @@ pipeline {
             }
         }
 
+        stage('Push Docker Image') {
+
+    steps {
+
+        echo 'Pushing Docker Image to Docker Hub'
+
+        withCredentials([
+            usernamePassword(
+                credentialsId: 'dockerhub-creds',
+                usernameVariable: 'DOCKER_USER',
+                passwordVariable: 'DOCKER_PASS'
+            )
+        ]) {
+
+            sh '''
+            echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+
+            docker tag project5-flask-app \
+            ayeshairam/project5-flask-app:${BUILD_NUMBER}
+
+            docker push \
+            ayeshairam/project5-flask-app:${BUILD_NUMBER}
+            '''
+        }
+    }
+}
+        
         stage('Deploy Flask Container') {
             steps {
                 echo 'Deploying Flask Application'
