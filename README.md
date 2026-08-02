@@ -94,8 +94,9 @@ pip3 install -r requirements.txt
 The pipeline validates that the Flask application loads successfully.
 
 Command:
+```bash
 python3 -c "import app; print('Flask app import successful')"
-
+```
 Expected output:
 
 Flask app import successful
@@ -105,8 +106,9 @@ Flask app import successful
 Jenkins creates a Docker image from the Flask application.
 
 Command:
+```bash
 docker build -t project5-flask-app .
-
+```
 5. Push Docker Image
 
 Jenkins securely authenticates with Docker Hub using stored Jenkins credentials.
