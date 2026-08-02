@@ -99,14 +99,13 @@ Command:
 python3 -c "import app; print('Flask app import successful')"
 ```
 Expected output:
-
 Flask app import successful
 
 4. Build Docker Image
-
 Jenkins creates a Docker image from the Flask application.
 
 Command:
+
 ```bash
 docker build -t project5-flask-app .
 ```
@@ -116,17 +115,22 @@ Jenkins securely authenticates with Docker Hub using stored Jenkins credentials.
 
 Docker image format:
 
+ ```bash
 ayeshairam/project5-flask-app:<build-number>
-
+```
 Example:
 
+```bash
 ayeshairam/project5-flask-app:11
+```
 
 6. Deploy Flask Container
 
 Jenkins automatically removes the previous container and deploys the latest Docker image on AWS EC2.
 
 Command:
+
+```bash
 docker stop project5-flask-container || true
 
 docker rm project5-flask-container || true
@@ -135,6 +139,7 @@ docker run -d \
 --name project5-flask-container \
 -p 5000:5000 \
 project5-flask-app
+```
 
 GitHub Webhook Automation
 
@@ -176,7 +181,9 @@ The Flask application runs inside a Docker container on an AWS EC2 instance.
 
 Container verification:
 
+```bash
 docker ps
+```
 
 Running application:
 
@@ -197,20 +204,27 @@ How to Run Locally
 
 Clone repository:
 
+```bash
 git clone https://github.com/ayeshactl/project5-cicd-flask-app.git
+```
 
 Navigate to project:
 
+```bash
 cd project5-cicd-flask-app
+```
 
 Build Docker image:
 
+```bash
 docker build -t flask-app .
+```
 
 Run container:
 
+```bash
 docker run -p 5000:5000 flask-app
-
+```
 Open:
 
 http://localhost:5000
