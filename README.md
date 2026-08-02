@@ -94,6 +94,7 @@ pip3 install -r requirements.txt
 The pipeline validates that the Flask application loads successfully.
 
 Command:
+
 ```bash
 python3 -c "import app; print('Flask app import successful')"
 ```
